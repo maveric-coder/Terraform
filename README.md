@@ -19,3 +19,7 @@ Terraform creates and manages resources on cloud platforms and other services th
 
 **Apply:** On approval, Terraform performs the proposed operations in the correct order, respecting any resource dependencies. For example, if you update the properties of a VPC and change the number of virtual machines in that VPC, Terraform will recreate the VPC before scaling the virtual machines.
 <img src = "/files/content/terraform_stages.png">
+
+## Terraform Architecture
+
+<img src = "/files/content/terraform_infra.git">
