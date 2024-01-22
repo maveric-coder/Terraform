@@ -23,3 +23,9 @@ Terraform creates and manages resources on cloud platforms and other services th
 ## Terraform Architecture
 
 <img src = "/files/content/terraform_infra.gif">
+
+In the diagram, we start off with Terraform configuration file, Terraform vars file, and other configuration files if created. 
+<br>We would then plan and use those configuration files with Terraform to apply those configurations to our cloud provider, which would then in turn build our cloud environment and deploy our infrastructure with our resources.
+<br>That information would then be sent back to Terraform where it would then write it to a Terraform state file, which is like a backup or snapshot of our successfully applied Terraform configuration.
+<br>We can then either keep that Terraform.tfstate file locally, or we can use something like Terraform Cloud as the backend to store our state, or we can have teams of people manage the configuration.
+
