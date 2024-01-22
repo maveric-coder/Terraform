@@ -213,3 +213,8 @@ docker ps
 ```
 #### Storing State files
 
+
+<img src = "/files/content/terraform-remote-state-storage.png"/>
+
+For remote storage of State file there is a feature of state locking so that there will be no parallael execution.
+<br>It also enables sharing of "output" values with other terraform configuration or code.
