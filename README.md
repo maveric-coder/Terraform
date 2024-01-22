@@ -64,6 +64,7 @@ It looks at the recorded, stored state file created during deployment and destro
 
 ### Basic Terraform code
 
+* Declaring Provider
 ```tf
 provider "aws" {
   region     = "us-east-1"
@@ -74,6 +75,7 @@ provider "aws" {
 Terraform uses plugin and make API calls with different cloud providers to validate and execute the commands.
 <br>In this case our provider is **aws**
 
+* Deploying VPC
 ```tf
 resource "aws_vpc" "prod-vpc" {
   cidr_block = "10.0.0.0/16"
@@ -83,8 +85,9 @@ resource "aws_vpc" "prod-vpc" {
   }
 }
 ```
-In the above snippet we have defined a VPC to be created with the name ***prod-vpc** and added a tag - production.
+In the above snippet we have defined a VPC to be created with the name **prod-vpc** and added a tag - production.
 
+* Data
 ```tf
 data "aws_instance" "my-vm" {
   instance_id = "i-012321311asad320"
@@ -96,7 +99,7 @@ A data source block fetches and tracks data of an existing resource whereas reso
 data.aws_instance.my-vm.instance_id
 ```
 
-
+* Declaring Variable
 ```tf
 variable "my-var" {
   description = "My Test Variable"
