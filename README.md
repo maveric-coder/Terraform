@@ -32,3 +32,26 @@ In the diagram, we start off with Terraform configuration file, Terraform vars f
 <br><br>That information would then be sent back to Terraform where it would then write it to a Terraform state file, which is like a backup or snapshot of our successfully applied Terraform configuration.
 <br><br>We can then either keep that Terraform.tfstate file locally, or we can use something like Terraform Cloud as the backend to store our state, or we can have teams of people manage the configuration.
 
+### Basic Terraform Commands
+```sh
+terraform init
+```
+It initializes the working directory that contains our terraform code.
+<br>It also:
+<br>**--> downloads ancialliary components - modules and plugins** from default registry/librbay or custom registry path and it caches it in our local machine, incase new plugins are available it will update those by default. 
+<br>**--> Sets up backend** - Sets the backend for storing terraform state file.
+
+```sh
+terrform plan
+```
+Reads the code and then creates and shows "plan" of execution/deployment/
+<br>Note: This command does not deploy anything. Consider this as a read-only command.
+<br><br>It allows the users to "review" the action plan before executing anything
+<br><br>At this stage, authentication credentials are used to connect to the infrastructutre, if required.
+
+
+```sh
+terraform apply
+```
+Deploys the intructions and statements in the code.
+<br>It updates the deployment state tracking mechanism file (state file) terraform.tfstate is the default state file.
