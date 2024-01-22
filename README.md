@@ -168,3 +168,46 @@ Terraform State command is a utility for manipulating and reading the Terraform 
 |terraform state list|List out all resources tracked by Terraform State file|
 |terraform state rm|Delete a resouce from the Terrafrom State file|
 |terraform state show|Show details of a resource tracked in the Terraform State file.|
+
+
+Create a main.tf file to deploy docker containe and see substate command in action
+```tf
+# Configure the Docker provider
+provider "docker" {}
+#Image to be used by container 
+
+resource "docker_image" "terraform-centos" {
+  name = "centos:7"
+  keep_locally = true
+｝
+
+# Create a container
+resource "docker_container" "centos" {
+  image = docker_image. terraform-centos. latest
+  name = "terraform-centos"
+  start = true
+  command = ["/bin/sleep", "500"]
+
+}
+```
+
+```sh
+terraform state
+```
+We can see all the containers and resources being managed by Terraform state file.
+```sh
+docker ps
+```
+All the running containers are lsited.
+```sh
+terraform state show docker_container.centos
+```
+This command shows all the details for the container named docker_container.centos
+```sh
+terraform state rm docker_container.centos
+``
+We removed the resource from the state file and is not managed by terraform state file any more but the container will keep runnning.
+```sh
+terraform state
+docker ps
+```
