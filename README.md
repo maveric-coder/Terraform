@@ -55,3 +55,61 @@ terraform apply
 ```
 Deploys the intructions and statements in the code.
 <br>It updates the deployment state tracking mechanism file (state file) terraform.tfstate is the default state file.
+
+```sh
+terraform destroy
+```
+It looks at the recorded, stored state file created during deployment and destroys all resources created by our code.
+<br>Should be used with caution, as it is a non-reversible command. Take backup and be sure that we want to delete the infrastructure.
+
+### Basic Terraform code
+
+```tf
+provider "aws" {
+  region     = "us-east-1"
+  access_key = "AKIAYH6OBDUTYJ2D4O66"
+  secret_key = "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"
+}
+```
+Terraform uses plugin and make API calls with different cloud providers to validate and execute the commands.
+<br>In this case our provider is **aws**
+
+```tf
+resource "aws_vpc" "prod-vpc" {
+  cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Name = "production"
+  }
+}
+```
+In the above snippet we have defined a VPC to be created with the name ***prod-vpc** and added a tag - production.
+
+```tf
+data "aws_instance" "my-vm" {
+  instance_id = "i-012321311asad320"
+}
+```
+A data source block fetches and tracks data of an existing resource whereas resource block will create/deploy a new resource.
+
+```tf
+data.aws_instance.my-vm.instance_id
+```
+
+
+```tf
+variable "my-var" {
+  description = "My Test Variable"
+  type = string
+  default = "hello world"
+}
+```
+Varaible makes our code more veratile and reusable. To refernce a variable in the code `var.my-var`.
+### Terraform State file
+
+It tracks the resources as in it tracks what resources have been deployed and what need to be deployed. It is very crucial for terraform to operate.
+<br>When we execute `terraform destroy` command terraform looks in state file to destroy the resources.
+<br>It helps terraform to calculate delta and new deployment plans.
+
+
+
