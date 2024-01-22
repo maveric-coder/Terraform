@@ -105,9 +105,18 @@ variable "my-var" {
   description = "My Test Variable"
   type = string
   default = "hello world"
+  validation {
+    condition = length(var.my-var) > 4
+    error_message = "The string must of more than 4 characters"
+  }
+
 }
 ```
 Varaible makes our code more veratile and reusable. To refernce a variable in the code `var.my-var`.
+<br>We can declare multiple variables in a separate file having extension **.tfvars**
+<br>With the use of validation feature we can validate the values of the variables and prompt some output incase the input value will not satisfy the declared condition.
+
+
 ### Terraform State file
 
 It tracks the resources as in it tracks what resources have been deployed and what need to be deployed. It is very crucial for terraform to operate.
