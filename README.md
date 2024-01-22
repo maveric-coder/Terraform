@@ -53,6 +53,9 @@ Reads the code and then creates and shows "plan" of execution/deployment/
 ```sh
 terraform apply
 ```
+```sh
+terraform apply --auto-approve
+```
 Deploys the intructions and statements in the code.
 <br>It updates the deployment state tracking mechanism file (state file) terraform.tfstate is the default state file.
 
@@ -105,6 +108,7 @@ variable "my-var" {
   description = "My Test Variable"
   type = string
   default = "hello world"
+  sensitive = true
   validation {
     condition = length(var.my-var) > 4
     error_message = "The string must of more than 4 characters"
@@ -115,6 +119,30 @@ variable "my-var" {
 Varaible makes our code more veratile and reusable. To refernce a variable in the code `var.my-var`.
 <br>We can declare multiple variables in a separate file having extension **.tfvars**
 <br>With the use of validation feature we can validate the values of the variables and prompt some output incase the input value will not satisfy the declared condition.
+<br> We can also decalre the value to be *sensitive* by this terraform will not show the values while executing it.
+
+Varaible types:
+<br>Base Types: int, string, boolean
+<br>Complex Types: list, set, map, touple, object
+
+*Output Values
+```tf
+
+resource "aws_s3_bucket" "my_69_bucket" {
+  bucket = "my-69-bucket"
+
+  tags = {
+    Name        = "bucket69"
+    Environment = "Dev"
+  }
+}
+
+output "s3bucketOutput" {
+    value = aws_s3_bucket.my_69_bucket
+}
+```
+Output values are shown on the shell aster running terraform apply.
+<br>Output values are like return values that we want to track after a successful terraform deployment.
 
 
 ### Terraform State file
