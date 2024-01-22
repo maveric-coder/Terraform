@@ -145,7 +145,7 @@ Output values are shown on the shell aster running terraform apply.
 <br>Output values are like return values that we want to track after a successful terraform deployment.
 
 
-### Terraform State file
+## Terraform State file
 
 It tracks the resources as in it tracks what resources have been deployed and what need to be deployed. It is very crucial for terraform to operate.
 <br>When we execute `terraform destroy` command terraform looks in state file to destroy the resources.
@@ -155,5 +155,16 @@ It tracks the resources as in it tracks what resources have been deployed and wh
 <br>Resource dependency metadata is also tracked via the state file.
 <br>Helps boost deployment perfoemance by caching resource attributes for subsequent use.
 
-##### Terraform State command
+### Terraform State command
 
+Terraform State command is a utility for manipulating and reading the Terraform state file.
+<br>Few scenarios:
+* Advanced state management
+* Manually remove a resource from Terraform State file so that it's not managed by Terraform
+* Listing out tracked resources and their details(via state and list sub-commands)
+
+|Terraform SubState command|Usage|
+|----|----|
+|terraform state list|List out all resources tracked by Terraform State file|
+|terraform state rm|Delete a resouce from the Terrafrom State file|
+|terraform state show|Show details of a resource tracked in the Terraform State file.|
