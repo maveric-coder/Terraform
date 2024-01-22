@@ -170,7 +170,7 @@ Terraform State command is a utility for manipulating and reading the Terraform 
 |terraform state show|Show details of a resource tracked in the Terraform State file.|
 
 
-Create a main.tf file to deploy docker containe and see substate command in action
+Create a main.tf file to deploy docker container and see substate command in action
 ```tf
 # Configure the Docker provider
 provider "docker" {}
@@ -211,3 +211,5 @@ We removed the resource from the state file and is not managed by terraform stat
 terraform state
 docker ps
 ```
+#### Storing State files
+
