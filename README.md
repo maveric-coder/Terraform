@@ -22,4 +22,4 @@ Terraform creates and manages resources on cloud platforms and other services th
 
 ## Terraform Architecture
 
-<img src = "/files/content/terraform_infra.git">
+<img src = "/files/content/terraform_infra.gif">
