@@ -3,7 +3,7 @@
 **Pre-requisites:**
 
 1. Docker should be pre-installed and accessible via default Terraform docker provider mechanism. [Install docker](https://docs.docker.com/engine/install/ubuntu/)
-2. Terraform binary version should be greater than or equal to 0.13. [Install terraform > v0.13](https://docs.digitalocean.com/reference/terraform/getting-started/)
+2. Terraform binary version should be greater than or equal to 0.13. [Install terraform](https://docs.digitalocean.com/reference/terraform/getting-started/)
 3. AWS CLI should be installed. `sudo apt-get install awscli`
 
 
