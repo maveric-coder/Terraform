@@ -42,10 +42,10 @@
 
 6. Deploy the container and verify
    ```sh
-   terraform apply
+   terraform apply --auto-approve
    ```
 
 7. Destroy the created container (make sure the container is in stopped state, or else it will fail and ask to run using -force)
    ```sh
-   terraform destroyt
+   terraform destroy --auto-approve
    ```
