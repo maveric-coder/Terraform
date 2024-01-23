@@ -29,4 +29,23 @@
    ```
    
 3. Verify the bucket name in `backend.tf` file
-4. 
+   
+4. Initialize the terraform to check for needed plugins and modules
+   ```sh
+   terraform init
+   ```
+   
+5. Now run Terraform Plan to validate the created storage
+   ```sh
+   terraform plan
+   ```
+
+6. Deploy the container and verify
+   ```sh
+   terraform apply
+   ```
+
+7. Destroy the created container (make sure the container is in stopped state, or else it will fail and ask to run using -force)
+   ```sh
+   terraform destroyt
+   ```
