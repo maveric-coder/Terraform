@@ -8,3 +8,25 @@
 
 
 <br>You will also need AWS Access Key and AWS Secret Access Key for configuring your AWS CLI profile used by S3 backend and ensure that your credentials allow you to create , upload and download objects from S3 buckets. As an alternate in lieu of AWS hardcoded credentials IAM roles can also be used.
+
+## Follow the below steps
+
+1. Create the profile for our AWS CLIauthentication, which is set to be demo can be seen in `backend.tf` file
+   ```sh
+   aws --profile demo configure
+   ```
+   ```sh
+   AWS Access Key ID:
+   AWS Secret Access Key:
+   Default region name: us-east-1
+   ```
+   You will get access key and secret key Account-> Security Credentials -> Access Keys -> Create access Key -> AWS CLI
+   <br>Copy the Access key ID and secret key in the AWS CLI
+
+2. Create a bucket using the newly created profile and select a bucket name
+   ```sh
+   aws --profile demo s3api create-bucket --bucket testbucket69696
+   ```
+   
+3. Verify the bucket name in `backend.tf` file
+4. 
