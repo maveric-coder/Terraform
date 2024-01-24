@@ -44,8 +44,12 @@
    ```sh
    terraform apply --auto-approve
    ```
+7. Verify the existence of the NGINX container by visiting http://<public IP>:8081 in your web browser or running docker ps to see the container.
+   ```sh
+   docker ps
+   ```
 
-7. Destroy the created container (make sure the container is in stopped state, or else it will fail and ask to run using -force)
+8. Destroy the created container (make sure the container is in stopped state, or else it will fail and ask to run using -force)
    ```sh
    terraform destroy --auto-approve
    ```
