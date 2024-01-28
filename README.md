@@ -241,3 +241,20 @@ resource "aws_instance" "my-instance"{
   subnet_id = module.my-vpc-module.subnet_id
 }
 
+
+## Terraform Built-in Functions
+
+* Terrraform comes with pre-packaged functions and user-defined functions are not allowed.
+
+```tf
+variable "project-name"{
+  type = string
+  default = "prod"
+}
+
+resource "aws_vpc" "my-vpc"{
+  cidr_block = "10.0.0.0/16"
+  tags = {
+    Name = join("-",["terraform", var.project-name])
+  }
+}
