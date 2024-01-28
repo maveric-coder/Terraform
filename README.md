@@ -261,3 +261,22 @@ resource "aws_vpc" "my-vpc"{
 ```
 
 [Terraform Functions](https://developer.hashicorp.com/terraform/language/functions)
+
+
+### Type Constraints - Terraform Variables
+
+* Type constriants control the type of variable values
+
+* Primitive - Single type value : number, string, bool
+* Complex -  Multiple types in a single variable : list, touple, map, object
+  
+  * Collection - allows multiple values of one primitive type to be grouped together : list, map, set (having values of same data type)
+    ```tf
+    variable "training"{
+      type = list(string)
+      default = ["ABC", "IN"]
+    }
+    ```
+    
+  * Structural - allows multiple values of different data types to be grouped together : Object, touple, set
+
