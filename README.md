@@ -220,7 +220,7 @@ For remote storage of State file there is a feature of state locking so that the
 <br>It also enables sharing of "output" values with other terraform configuration or code.
 
 
-### Terraform Modules
+## Terraform Modules
 * A module is a container for multiple resources that are used together.
 * Every Terraform configuration has atleast one module, called root module which consists of code files in the main working directory.
 * Modules can optionally take inputs and provide outputs to plug back into the main code.
