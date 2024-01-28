@@ -240,7 +240,7 @@ resource "aws_instance" "my-instance"{
   .....# some arguments
   subnet_id = module.my-vpc-module.subnet_id
 }
-
+```
 
 ## Terraform Built-in Functions
 
