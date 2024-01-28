@@ -294,7 +294,7 @@ resource "aws_vpc" "my-vpc"{
 terraform fmt
 ```
 
-### Terraform Taint
+### Terraform Taint 
 
 * Taints a resource, forcing it to be destroyed and recreated
 * Modifies the state file, which causes the recreation workflow
@@ -302,4 +302,14 @@ terraform fmt
 
 ```tf
 terraform taint <resource_address>
+```
+
+### Terraform Import
+
+* Maps existing resources to Terraform using "ID"
+* "ID" is dependent on the underlying vendor, for example to import AWS EC2 instance we'll have to provide its instance ID.
+* Importing the same resource to multiple terraform codes can cause unknown behaviour and it is not recommended.
+
+```tf
+terraform import <resource_address> ID
 ```
