@@ -280,3 +280,26 @@ resource "aws_vpc" "my-vpc"{
     
   * Structural - allows multiple values of different data types to be grouped together : Object, touple, set
 
+
+
+* any - it is a placeholder for primitive type yet to be decided and its actual type will be decided at runtime.
+
+
+### Terraform fmt
+
+* Formats Terraform code for readability
+* Helps in keeping code consistent
+
+```tf
+terraform fmt
+```
+
+### Terraform Taint
+
+* Taints a resource, forcing it to be destroyed and recreated
+* Modifies the state file, which causes the recreation workflow
+* Tainting a resource may cause other resources to be modified
+
+```tf
+terraform taint <resource_address>
+```
