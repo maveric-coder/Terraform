@@ -211,10 +211,22 @@ We removed the resource from the state file and is not managed by terraform stat
 terraform state
 docker ps
 ```
-#### Storing State files
+#### Storing State files 
 
 
 <img src = "/files/content/terraform-remote-state-storage.png"/>
 
 For remote storage of State file there is a feature of state locking so that there will be no parallael execution.
 <br>It also enables sharing of "output" values with other terraform configuration or code.
+
+
+### Terraform Modules
+* A module is a container for multiple resources that are used together.
+* Every Terraform configuration has atleast one module, called root module which consists of code files in the main working directory.
+
+```tf
+module "my-vpc-module"{
+  source = "./modules/vpc"
+  version = "0.0.5"
+  region = var.region
+}
