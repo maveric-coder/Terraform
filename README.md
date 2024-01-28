@@ -258,3 +258,6 @@ resource "aws_vpc" "my-vpc"{
     Name = join("-",["terraform", var.project-name])
   }
 }
+```
+
+[Terraform Functions](https://developer.hashicorp.com/terraform/language/functions)
