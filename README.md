@@ -33,6 +33,7 @@ In the diagram, we start off with Terraform configuration file, Terraform vars f
 <br><br>We can then either keep that Terraform.tfstate file locally, or we can use something like Terraform Cloud as the backend to store our state, or we can have teams of people manage the configuration.
 
 ### Basic Terraform Commands
+1. terraform init
 ```sh
 terraform init
 ```
@@ -41,6 +42,7 @@ It initializes the working directory that contains our terraform code.
 <br>**--> downloads ancialliary components - modules and plugins** from default registry/librbay or custom registry path and it caches it in our local machine, incase new plugins are available it will update those by default. 
 <br>**--> Sets up backend** - Sets the backend for storing terraform state file.
 
+2. terraform plan
 ```sh
 terrform plan
 ```
@@ -55,6 +57,7 @@ terraform plan -out <plan_name> # Output a deployment plan
 terraform plan -destroy #Output a destroy plan
 ```
 
+3. terraform apply
 
 ```sh
 terraform apply
@@ -62,12 +65,23 @@ terraform apply
 ```sh
 terraform apply --auto-approve
 ```
+Deploy a specific plan
 ```sh
-terraform apply <plan_name> # Deploy a specific plan
+terraform apply <plan_name> 
+```
+Deploy changes to a targated resource
+```sh
+terraform apply -target=<resource_name>
+```
+Pass a variable via the command-line
+```sh
+terraform apply -var my_variable=<variable>
 ```
 Deploys the intructions and statements in the code.
 <br>It updates the deployment state tracking mechanism file (state file) terraform.tfstate is the default state file.
 
+4. terraform destroy
+   
 ```sh
 terraform destroy
 ```
