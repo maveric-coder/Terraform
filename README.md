@@ -48,6 +48,12 @@ Reads the code and then creates and shows "plan" of execution/deployment/
 <br>Note: This command does not deploy anything. Consider this as a read-only command.
 <br><br>It allows the users to "review" the action plan before executing anything
 <br><br>At this stage, authentication credentials are used to connect to the infrastructutre, if required.
+```sh
+terraform plan -out <plan_name> # Output a deployment plan
+```
+```sh
+terraform plan -destroy #Output a destroy plan
+```
 
 
 ```sh
@@ -55,6 +61,9 @@ terraform apply
 ```
 ```sh
 terraform apply --auto-approve
+```
+```sh
+terraform apply <plan_name> # Deploy a specific plan
 ```
 Deploys the intructions and statements in the code.
 <br>It updates the deployment state tracking mechanism file (state file) terraform.tfstate is the default state file.
