@@ -1,19 +1,26 @@
-provider "docker" {}
-
-resource "docker_image" "nginx" {
-  name = "nginx:latest"
-}
-resource "docker_container" "nginx" {
-  image = docker_image.nginx.name
-  name  = "nginx"
-  ports {
-    internal = 80
-    external = var.external_port
-    protocol = "tcp"
+terraform {
+  required_providers {  
+    docker = {
+      source = "terraform-providers/docker"
+    }
   }
 }
 
-output "url" {
-  description = "Browser URL for container site"
-  value       = join(":", ["http://localhost", tostring(var.external_port)])
+provider "docker" {
+  
+}
+
+resource "docker_image" "nginx_image" {
+  name = "nginx:latest"
+  keep_locally = false
+}
+
+resource "docker_container" "nginx_container" {
+  image = docker.image.nginx.latest
+  name = "nginx"
+  ports {
+    internal = 80
+    external = 8080
+  }
+  
 }
