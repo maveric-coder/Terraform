@@ -313,3 +313,16 @@ terraform taint <resource_address>
 ```tf
 terraform import <resource_address> ID
 ```
+
+### Terraform Workspace (CLI)
+
+* The terraform workspaces are alternate state files within the same working directory
+* Terraform starts with a single workspace that is always called default. It cannot be deleted
+
+```tf
+terraform workspace new <WORKSPACE NAME> --> create a new Workspace
+terraform workspace select <WORKSPACE NAME> --> Select a workspace
+```
+It is helpful in cases where we need to test changes usinfg a parallel, distinct copy of infrastructure. It can also be modelled against branches in version control such as Git.
+<br>Workspaces are meant to share resources and to help enable collaboration.
+<br>Access to a workspace name is provided through the ${terraform.workspace} variable.
