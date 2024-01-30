@@ -186,6 +186,18 @@ locals {
   owner = "test team"
 }
 
+resource "aws_instance" "test_instance" {
+  #...
+  tags = local.service_name
+}
+```
+A set of related Local values can be declared together in a single block. <br>The expressions are not limited to literal constraints; they can reference other values in the module.
+
+
+When a local value is declared, we can refernce it in expression as local.<name>
+<br>Local values can only be accessed in expressions within the module where they are declared.
+
+
 ## Terraform State file
 
 It tracks the resources as in it tracks what resources have been deployed and what need to be deployed. It is very crucial for terraform to operate.
@@ -264,7 +276,11 @@ For remote storage of State file there is a feature of state locking so that the
 ## Terraform Modules
 * A module is a container for multiple resources that are used together.
 * Every Terraform configuration has atleast one module, called root module which consists of code files in the main working directory.
+  * Root modules - We need atleast one root module.
+  * Child modules - Modules that are called by root module.
+  * Published modules - Modules that are loaded from private or pu
 * Modules can optionally take inputs and provide outputs to plug back into the main code.
+* A module can consist of a collection of .tf as well as .tf.json files kept together in a directory.
 
 ```tf
 module "my-vpc-module"{
@@ -274,7 +290,7 @@ module "my-vpc-module"{
 }
 ```
 
-Acccessing module outpu in the main code
+Acccessing module output in the main code
 
 ```tf
 resource "aws_instance" "my-instance"{
