@@ -439,6 +439,12 @@ terraform {
     region = "us-east-1"
   }
 }
+```
+S3 bucket permissions: 
+  * s3:ListBucket
+  * s3:GetObject
+  * s3:PutObject
+  
 
 ### Terraform Import
 
