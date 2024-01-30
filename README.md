@@ -315,6 +315,7 @@ resource "aws_instance" "my-instance"{
       source = "hashicorp/consul/aws"
       version = "0.1.0"
     }
+    ```
   4. Bitbucket
   5. Generic Git, Mercurial Repositories
   6. HTTP URLs
@@ -382,6 +383,23 @@ terraform fmt
 
 ```tf
 terraform taint <resource_address>
+```
+### Backend Configuration
+A backend defines where Terraform stores its state data files.
+
+Terraform uses persisted state data to keep track of the resources it manages. Most non-trivial Terraform configurations either integrate with Terraform Cloud or use a backend to store state remotely. This lets multiple people access the state data and work together on that collection of infrastructure resources.
+<br><br>By default, Terraform uses a backend called local, which stores state as a local file on disk. 
+```tf
+terraform {
+  backend "remote" {
+    organization = "example_corp"
+
+    workspaces {
+      name = "my-app-prod"
+    }
+  }
+}
+
 ```
 
 ### Terraform Import
