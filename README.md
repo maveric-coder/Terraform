@@ -278,7 +278,7 @@ For remote storage of State file there is a feature of state locking so that the
 * Every Terraform configuration has atleast one module, called root module which consists of code files in the main working directory.
   * Root modules - We need atleast one root module.
   * Child modules - Modules that are called by root module.
-  * Published modules - Modules that are loaded from private or pu
+  * Published modules - Modules that are loaded from private or public repository
 * Modules can optionally take inputs and provide outputs to plug back into the main code.
 * A module can consist of a collection of .tf as well as .tf.json files kept together in a directory.
 
@@ -298,6 +298,28 @@ resource "aws_instance" "my-instance"{
   subnet_id = module.my-vpc-module.subnet_id
 }
 ```
+
+* 8 Module Source types:
+  1. GitHub
+  2. Local Paths
+    ```tf
+    module "consul" {
+      source = "./consul"
+    }
+    ```
+    A local path must begin with *./* or *../* to indicate that it is indeed a local path. Local path are not installed in the same sense as other sources.
+
+  3. Terraform Registry
+    ```tf
+    module "consul" {
+      source = "hashicorp/consul/aws"
+      version = "0.1.0"
+    }
+  4. Bitbucket
+  5. Generic Git, Mercurial Repositories
+  6. HTTP URLs
+  7. S3 Buckets
+  8. GCS Buckets
 
 ## Terraform Built-in Functions
 
@@ -356,6 +378,7 @@ terraform fmt
 * Taints a resource, forcing it to be destroyed and recreated
 * Modifies the state file, which causes the recreation workflow
 * Tainting a resource may cause other resources to be modified
+* It is not possible to taint the entire module. Instead, each resource within the module must be tainted separately.
 
 ```tf
 terraform taint <resource_address>
