@@ -5,6 +5,8 @@ Terraform is an infrastructure as code tool that lets you build, change, and ver
 It is a tool for building, changing,and versioning infrastructure safely and efficiently, whether it be locally or in the cloud. 
 You can manage existing and popular service providers, as well as custom in-house solutions. This includes low-level components, such as compute instances, storage, networking, as well as high-level components, such as DNS entries and SaaS features, as well as many other components.
 
+Plain text files with .tf extension are where code in terraform language is stored. We can also use a json variant of the language wguch uses .tf.json file extension.
+
 ### How does Terraform work?
 
 Terraform creates and manages resources on cloud platforms and other services through their application programming interfaces (APIs). Providers enable Terraform to work with virtually any platform or service with an accessible API.
@@ -228,7 +230,7 @@ terraform state show docker_container.centos
 This command shows all the details for the container named docker_container.centos
 ```sh
 terraform state rm docker_container.centos
-``
+```
 We removed the resource from the state file and is not managed by terraform state file any more but the container will keep runnning.
 ```sh
 terraform state
