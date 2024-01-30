@@ -1,3 +1,4 @@
+## Basic Deployment and checks
 Initialize the terraform to check for needed plugins and modules
 ```sh
 terraform init
@@ -50,4 +51,30 @@ will show the new configuration for the server
 Destroy the created container (make sure the container is in stopped state, or else it will fail and ask to run using -force)
 ```sh
 terraform destroy --auto-approve
+```
+
+## Input variables
+
+Create the variables.tf file.
+
+Now we will replace the tag name with the variable created earlier.
+```tf
+resource "aws_instance" "app_server" {
+  ami           = "ami-09e67e426f25ce0d7"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = var.instance_name
+  }
+}
+```
+
+Apply the configuration now
+```sh
+terraform apply
+```
+
+Now, if we will try to observe the tag name for the server, we will observer that it took default value as we did not pass a value while applying the configuration
+```sh
+terraform show
 ```
