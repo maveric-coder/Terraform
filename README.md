@@ -385,6 +385,7 @@ terraform fmt
 terraform taint <resource_address>
 ```
 ### Backend Configuration
+
 A backend defines where Terraform stores its state data files.
 
 Terraform uses persisted state data to keep track of the resources it manages. Most non-trivial Terraform configurations either integrate with Terraform Cloud or use a backend to store state remotely. This lets multiple people access the state data and work together on that collection of infrastructure resources.
@@ -402,10 +403,10 @@ terraform {
 
 ```
 There are some important limitations on backend configuration:
-
 * A configuration can only provide one backend block.
 * A backend block cannot refer to named values (like input variables, locals, or data source attributes).
 * You cannot reference values declared within backend blocks elsewhere in the configuration. Refer to References to Resource Attributes for more details.
+
 ### Terraform Import
 
 * Maps existing resources to Terraform using "ID"
