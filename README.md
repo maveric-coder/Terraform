@@ -401,7 +401,11 @@ terraform {
 }
 
 ```
+There are some important limitations on backend configuration:
 
+* A configuration can only provide one backend block.
+* A backend block cannot refer to named values (like input variables, locals, or data source attributes).
+* You cannot reference values declared within backend blocks elsewhere in the configuration. Refer to References to Resource Attributes for more details.
 ### Terraform Import
 
 * Maps existing resources to Terraform using "ID"
