@@ -78,3 +78,7 @@ Now, if we will try to observe the tag name for the server, we will observer tha
 ```sh
 terraform show
 ```
+We will pass some values 
+```sh
+terraform apply -var "instance_name=prod"
+```
