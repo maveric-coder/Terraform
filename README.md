@@ -141,6 +141,7 @@ variable "my-var" {
 
 }
 ```
+The name of a variable can be any valid identifier except for *source,version, providers, count, for_each, lifecycle, pends_on, and locals*<br>
 Varaible makes our code more veratile and reusable. To refernce a variable in the code `var.my-var`.
 <br>We can declare multiple variables in a separate file having extension **.tfvars**
 <br>With the use of validation feature we can validate the values of the variables and prompt some output incase the input value will not satisfy the declared condition.
@@ -150,9 +151,17 @@ Varaible types:
 <br>Base Types: int, string, boolean
 <br>Complex Types: list, set, map, touple, object
 
-*Output Values
-```tf
+* Environment Variables
 
+Terraform searches the environment for environment variables named TF_VAR_ followed by the name of the variable.
+```sh
+export TF_VAR_image_id = ami-abc12345
+terraform plan
+```
+Terraform matches the variable name exactly as given in configuration on operating systems where the environment variable is case sensitive. The requirement environment variable name usually includes a mix of upper and lowercase letters, like an example above.
+
+* Output Values
+```tf
 resource "aws_s3_bucket" "my_69_bucket" {
   bucket = "my-69-bucket"
 
@@ -169,6 +178,13 @@ output "s3bucketOutput" {
 Output values are shown on the shell aster running terraform apply.
 <br>Output values are like return values that we want to track after a successful terraform deployment.
 
+* Local Variable
+
+```tf
+locals {
+  service_name = "test"
+  owner = "test team"
+}
 
 ## Terraform State file
 
