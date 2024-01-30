@@ -430,6 +430,16 @@ then run the backend script with terraform init
 terraform init -backend-config=backend.hcl
 ```
 
+S3 backend configuration
+```tf
+terraform {
+  backend "s3" {
+    bucket = "mybucket"
+    key = "path/to/my/key"
+    region = "us-east-1"
+  }
+}
+
 ### Terraform Import
 
 * Maps existing resources to Terraform using "ID"
