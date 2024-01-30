@@ -82,3 +82,7 @@ We will pass some values
 ```sh
 terraform apply -var "instance_name=prod"
 ```
+
+## Output variables
+
+Now we can get out of certain values assocoated with our deployed resources, once we run `terraform apply`.
