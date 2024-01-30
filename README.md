@@ -418,6 +418,18 @@ terraform {
 path - the path to tfstate file
 <br>workspace_dir - the path to non-default workspace
 
+We can create a separate backend script
+```tf
+# backend.hcl
+workspaces { name = "workspace" }
+hostname = "app.terraform.io"
+organisation = "company"
+```
+then run the backend script with terraform init
+```sh
+terraform init -backend-config=backend.hcl
+```
+
 ### Terraform Import
 
 * Maps existing resources to Terraform using "ID"
