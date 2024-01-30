@@ -11,7 +11,7 @@
 
 Create the profile for our AWS CLIauthentication, which is set to be demo can be seen in `backend.tf` file
    ```sh
-   aws --profile demo configure
+   aws configure
    ```
    ```sh
    AWS Access Key ID:
