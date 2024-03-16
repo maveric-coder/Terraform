@@ -204,7 +204,7 @@ It tracks the resources as in it tracks what resources have been deployed and wh
 <br>When we execute `terraform destroy` command terraform looks in state file to destroy the resources.
 <br>It helps terraform to calculate delta and new deployment plans.
 <br>By default, state is stored in file called terraform.tfstate.
-<br>Prior to any modification operation, Terraform refreshed tfstate file.
+<br>Prior to any modification operation, Terraform refreshes tfstate file.
 <br>Resource dependency metadata is also tracked via the state file.
 <br>Helps boost deployment perfoemance by caching resource attributes for subsequent use.
 
