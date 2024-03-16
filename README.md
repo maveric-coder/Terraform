@@ -142,7 +142,7 @@ variable "my-var" {
 }
 ```
 The name of a variable can be any valid identifier except for *source,version, providers, count, for_each, lifecycle, pends_on, and locals*<br>
-Varaible makes our code more veratile and reusable. To refernce a variable in the code `var.my-var`.
+Varaible makes our code more versatile and reusable. To refernce a variable in the code `var.my-var`.
 <br>We can declare multiple variables in a separate file having extension **.tfvars**
 <br>With the use of validation feature we can validate the values of the variables and prompt some output incase the input value will not satisfy the declared condition.
 <br> We can also decalre the value to be *sensitive* by this terraform will not show the values while executing it.
