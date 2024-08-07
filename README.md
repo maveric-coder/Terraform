@@ -468,3 +468,102 @@ terraform workspace select <WORKSPACE NAME> --> Select a workspace
 It is helpful in cases where we need to test changes usinfg a parallel, distinct copy of infrastructure. It can also be modelled against branches in version control such as Git.
 <br>Workspaces are meant to share resources and to help enable collaboration.
 <br>Access to a workspace name is provided through the ${terraform.workspace} variable.
+
+## Reading Values from Azure Key Vault in Terraform
+
+### Understanding the Approach
+
+Terraform doesn't directly access secrets within Azure Key Vault for security reasons. However, it can retrieve the secret value using the `data` resource. Here's a breakdown of the steps:
+
+1. **Identify the Key Vault:** Determine the name and resource group of the Key Vault where the secret is stored.
+2. **Use `data` resource:** Utilize the `azurerm_key_vault_secret` data source to fetch the secret value.
+
+### Terraform Code Snippet
+
+```terraform
+data "azurerm_key_vault" "example" {
+  name                = "your-key-vault-name"
+  resource_group_name = "your-resource-group"
+}
+
+data "azurerm_key_vault_secret" "example" {
+  name         = "your-secret-name"
+  key_vault_id = data.azurerm_key_vault.example.id
+}
+
+output "secret_value" {
+  value = data.azurerm_key_vault_secret.example.value
+}
+```
+
+### Explanation
+
+* **`data "azurerm_key_vault" "example"`:** This block fetches information about the Key Vault, including its ID, which is used in the next step.
+* **`data "azurerm_key_vault_secret" "example"`:** This block retrieves the secret value based on its name and the Key Vault ID.
+* **`output "secret_value"`:** This block outputs the retrieved secret value for reference.
+
+### Important Considerations
+
+* **Permissions:** Ensure the service principal associated with your Terraform configuration has necessary permissions to access the Key Vault and read secrets.
+* **Security:** Avoid hardcoding secrets in Terraform code. Always use Key Vault for secure storage.
+* **Error Handling:** Implement error handling to gracefully handle situations where the secret is not found.
+* **Secret Rotation:** Regularly rotate secrets to enhance security.
+* **Terraform State:** Protect your Terraform state file as it contains sensitive information.
+
+### Additional Tips
+
+* Consider using environment variables or configuration files to store the Azure credentials required for Terraform execution.
+* Use Terraform modules to encapsulate common Key Vault configurations.
+* Implement proper error handling and logging in your Terraform code.
+
+
+## Error Handling in Terraform When Retrieving Secrets from Azure Key Vault
+
+When retrieving secrets from Azure Key Vault in Terraform, it's crucial to implement error handling to gracefully handle potential issues. This could include scenarios like the secret not existing, insufficient permissions, or network errors.
+
+### Understanding Potential Errors
+
+* **Secret Not Found:** The specified secret might not exist in the Key Vault.
+* **Insufficient Permissions:** The service principal associated with your Terraform configuration might lack necessary permissions to access the Key Vault or read secrets.
+* **Network Errors:** Network connectivity issues can prevent successful retrieval of the secret.
+
+### Implementing Error Handling
+
+Terraform provides the `try` and `catch` blocks for error handling. We can use these to handle exceptions and provide informative messages.
+
+```terraform
+data "azurerm_key_vault" "example" {
+  name                = "your-key-vault-name"
+  resource_group_name = "your-resource-group"
+}
+
+try {
+  data "azurerm_key_vault_secret" "example" {
+    name         = "your-secret-name"
+    key_vault_id = data.azurerm_key_vault.example.id
+  }
+} on error {
+  output "error_message" {
+    value = "Error retrieving secret: ${error.message}"
+  }
+}
+
+output "secret_value" {
+  value = try { data.azurerm_key_vault_secret.example.value } catch * { "" }
+}
+```
+
+### Explanation
+
+* **`try` block:** This block contains the code that might potentially raise an error. In this case, it's the `data "azurerm_key_vault_secret" "example"` block.
+* **`on error` block:** This block is executed if an error occurs within the `try` block. Here, we're creating an output `error_message` to display the error message for debugging purposes.
+* **`output "secret_value"`:** This block tries to output the secret value if it was successfully retrieved. If an error occurs, an empty string is returned.
+
+### Additional Considerations
+
+* **Custom Error Handling:** You can create custom error messages based on specific error types or conditions.
+* **Retry Logic:** For transient errors like network issues, consider implementing retry logic using `for_each` and `count` meta-arguments.
+* **Logging:** Use Terraform's logging capabilities to record error details for analysis.
+* **Alerting:** Integrate with monitoring tools to send notifications for critical errors.
+
+
