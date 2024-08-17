@@ -6,6 +6,15 @@ terraform {
       version = ">=3.43.0"
     }
   }
+
+  cloud {
+
+    organization = "Terraform_Prod"
+
+    workspaces {
+      name = "remotestate"
+    }
+  }
 }
 provider "azurerm" {
   features {}
