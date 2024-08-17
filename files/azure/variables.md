@@ -7,7 +7,7 @@ In Terraform, managing configuration involves two key files: `variables.tf` and 
 * **The Blueprint:** This file acts as the blueprint, defining the variables your Terraform configuration will use.
 * **What's Included:** Each variable declaration specifies:
     * **Name:** A unique identifier used to reference the variable in your Terraform code (e.g., `resource_group_name`).
-    * **Type:** Defines the data type the variable can hold (e.g., `string`, `number`, `list`).
+    * **Type:** Defines the data type the variable can hold (e.g., `string`, `number`, `list`, `bool`, `set`, `map`).
     * **Description (Optional):** Provides a clear explanation of the variable's purpose (e.g., `Name of the resource group`).
 
 **Example:**
